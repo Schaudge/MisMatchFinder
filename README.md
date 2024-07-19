@@ -6,8 +6,10 @@ The MisMatchFinder algorithm identifies mismatches within reads compared to the 
  * and a ctDNA-centric fragmentomics filter
 
 
-# Installation
+# Run MisMatchFinder
+The easiest way is downloding the binary file of mismatchfinder and running it. The binary file can be executed without intalling Rust. The reference files including gnomAD echtvar for the germline variant filter ,human GRCh38 high mappability regions for the whitelist, as well as a small demo file can be downloaded in Zenodo page https://zenodo.org/records/12754454.
 
+# Installation
 Install time is 100% dependent on the compile time and therefore different between systems, but on a standard x86 laptop compile time is typically less than 2 minutes.
 
 Requirements: Rust
@@ -19,6 +21,8 @@ Requirements: Rust
 # Usage
 
 To ensure optimal results, please use the gnomAD echtvar (available from [https://github.com/brentp/echtvar/releases](https://github.com/brentp/echtvar/releases)) or an eqivalent echtvar file
+The whitelist bed format file of human genome high mappability regions can be built: 1.The mappability tracks were first computed with GEM (https://doi.org/10.1371/journal.pone.0030377) and then collated converted to a bed file
+with R just like in the best practice instructions of QDNAseq (https://doi.org/10.1101/gr.175141.114) for creating a new bin annotation.
 
 ```
 USAGE:
