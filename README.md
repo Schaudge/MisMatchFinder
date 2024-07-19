@@ -7,7 +7,7 @@ The MisMatchFinder algorithm identifies mismatches within reads compared to the 
 
 
 # Run MisMatchFinder
-The easiest way is downloding the binary file of mismatchfinder and running it. The binary file can be executed without intalling Rust. The reference files including gnomAD echtvar for the germline variant filter ,human GRCh38 high mappability regions for the whitelist, as well as a small demo file can be downloaded in Zenodo page https://zenodo.org/records/12754454.
+The easiest way is downloding the binary file of mismatchfinder and running it. The binary file can be executed without intalling Rust. The reference files (gnomAD echtvar for the germline variant filter and human GRCh38 high mappability regions for the whitelist bed file) and demo files can be downloaded in Zenodo page https://zenodo.org/records/12754454.
 
 # Installation
 Install time is 100% dependent on the compile time and therefore different between systems, but on a standard x86 laptop compile time is typically less than 2 minutes.
@@ -20,8 +20,7 @@ Requirements: Rust
 
 # Usage
 
-To ensure optimal results, please use the gnomAD echtvar (available from [https://github.com/brentp/echtvar/releases](https://github.com/brentp/echtvar/releases)) or an eqivalent echtvar file
-The whitelist bed format file of human genome high mappability regions can be built: 1.The mappability tracks were first computed with GEM (https://doi.org/10.1371/journal.pone.0030377) and then collated converted to a bed file
+To ensure optimal results, please use the gnomAD echtvar (available from [https://github.com/brentp/echtvar/releases](https://github.com/brentp/echtvar/releases)) or an eqivalent echtvar file. The whitelist bed format file of human genome high mappability regions can be built: 1.The mappability tracks were first computed with GEM (https://doi.org/10.1371/journal.pone.0030377) and then collated converted to a bed file
 with R just like in the best practice instructions of QDNAseq (https://doi.org/10.1101/gr.175141.114) for creating a new bin annotation.
 
 ```
@@ -83,13 +82,13 @@ OPTIONS:
 
 # Example analysis
 
-With the [example bam](example/example.bam) runing the default analysis with the provided [whitelist](example/whitelist.bed) we generate the vcf output [`example_bamsites.vcf.gz`](example/example_bamsites.vcf.gz)
+With the [example bam](example/example.bam) runing the default analysis we generate the vcf output [`example_bamsites.vcf.gz`](example/example_bamsites.vcf.gz)
 
 please refer to [echtvar release](https://github.com/brentp/echtvar/releases/tag/v0.1.9) to download the echtvar reference for gnomad v3.1.2 
 
 Runtime of this step should be less than 20 seconds on the test data
 ```
-$ mismatchfinder --germline_file /path/to/echtvarfile/gnomad.v3.1.2.echtvar.v2.zip  --whitelist_bed /path/to/whitelist.bed -o /path/to/outputfolder/--strict_overlaps --only_overlaps /path/to/example.bam 
+$ mismatchfinder --germline_file /path/to/echtvarfile/gnomad.v3.1.2.echtvar.v2.zip -o /path/to/outputfolder/--strict_overlaps --only_overlaps /path/to/example.bam 
 [...]
 2023-12-08T04:15:16.586Z INFO [mismatchfinder] Found 8738 mismatches 
 2023-12-08T04:15:18.389Z INFO [mismatchfinder] Found 828 somatic mismatches
@@ -117,9 +116,3 @@ text(1:ncol(SBSfit[,-1]), line2user(0,1), labels = colnames(SBSfit[,-1]), srt=45
 the output on the test data will look similar to this
 ![plot](example/example_signature_weights.png)
 
-
-
-# Known issues and possible extentions
-
- * No CRAM support yet
- * Zarr support only rudimentary
