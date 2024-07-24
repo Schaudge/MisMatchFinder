@@ -20,7 +20,8 @@ Requirements: Rust
 
 # Usage
 
-To ensure optimal results, please use the gnomAD echtvar (available from [https://github.com/brentp/echtvar/releases](https://github.com/brentp/echtvar/releases)) or an eqivalent echtvar file. The whitelist bed format file of human genome high mappability regions can be built: 1.The mappability tracks were first computed with GEM (https://doi.org/10.1371/journal.pone.0030377) and then collated converted to a bed file
+To ensure optimal results, please use the gnomAD echtvar (available from [https://github.com/brentp/echtvar/releases](https://github.com/brentp/echtvar/releases)) or an eqivalent echtvar file.  
+The whitelist bed format file of human genome high mappability regions can be built: 1.The mappability tracks were first computed with GEM (https://doi.org/10.1371/journal.pone.0030377) and then collated converted to a bed file
 with R just like in the best practice instructions of QDNAseq (https://doi.org/10.1101/gr.175141.114) for creating a new bin annotation.
 
 ```
