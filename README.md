@@ -7,8 +7,8 @@ The MisMatchFinder algorithm identifies mismatches within reads compared to the 
 
 
 # Run MisMatchFinder
-The easiest way is downloding the binary file of mismatchfinder and running it.  
-The reference files (gnomAD echtvar for the germline variant filter and human GRCh38 high mappability regions for the whitelist bed file) and demo files can be downloaded in Zenodo page https://zenodo.org/records/12754454.  
+The easiest way is downloding the binary file of MismatchFinder and running it.  
+The reference files (gnomAD echtvar for the germline variant filter and human GRCh38 high mappability regions for the whitelist bed file) and demo files can be downloaded in [Zenodo repository](https://zenodo.org/records/12754454).  
 We recommend to use MisMatchFinder with the quality filter, the germline filter, and the fragmentomics filter as the following settings:  
 ```
 ./mismatchfinder --germline_file gnomad.v3.1.2.echtvar.v2.zip --only-overlaps --strict-overlap --whitelist_bed GCA_000001405.15_GRCh38_full_analysis_set.100mer.highMappability.bed -o $OUTPUT_FOLDER $INPUT_BAM
