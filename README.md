@@ -7,7 +7,7 @@ The MisMatchFinder algorithm identifies mismatches within reads compared to the 
 
 
 # Run MisMatchFinder
-The easiest way to deploy our tool is by downloding the binary file of MismatchFinder and directly running it.  
+**The easiest way to deploy our tool is by downloding the binary file of MismatchFinder and directly running it.**  
 The GRCh38 related reference files (gnomAD echtvar for the germline variant filter and human GRCh38 high mappability regions for the whitelist bed file) and demo files can be found in [Zenodo repository](https://zenodo.org/records/12754454).  
 We recommend running MisMatchFinder with the following parameters:  
 
@@ -28,7 +28,7 @@ Requirements: Rust
 3. Move the binary (```target/release/mismatchfinder```) into the ```$PATH```
 
 # Usage
-**If you are able to download the the gnomAD echtvar (--germline_file) and the high mappability region file (--whitelist_bed) from the [Zenodo repository](https://zenodo.org/records/12754454), then no need to build them with the following instructions.**  
+**If you are able to download the the gnomAD echtvar (--germline_file) and the high mappability region file (--whitelist_bed) from the [Zenodo repository](https://zenodo.org/records/12754454), then no need to build them with the following instructions.**   
 To ensure optimal results, please use the gnomAD echtvar as the germline filter (available from [https://github.com/brentp/echtvar/releases](https://github.com/brentp/echtvar/releases)) or an eqivalent echtvar file and refer to [echtvar release](https://github.com/brentp/echtvar/releases/tag/v0.1.9) to download the echtvar reference for gnomad v3.1.2.  
 To ensure optimal mapping rates and no mapping related mismatches, the analysis was restricted to high mappability areas of the genome. These areas were defined as regions, where a k-mer of 100bp had a 85% or higher unique mappability rate. The mappability tracks were first computed with [GEM](https://doi.org/10.1371/journal.pone.0030377) and then collated converted to a bed file with R just like in the best practice instructions of [QDNAseq](https://doi.org/10.1101/gr.175141.114) for creating a new bin annotation. This method was only required for [GRCh38](https://genome.cshlp.org/content/27/5/849.long) as so far, the UCSC mappability data track was only available for [GRCh37](https://doi.org/10.1371/journal.pbio.1001091).
 ```
