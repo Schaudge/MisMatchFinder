@@ -1,19 +1,20 @@
 # MisMatchFinder
 The MisMatchFinder algorithm identifies mismatches within reads compared to the reference genome and filters background noise unrelated to somatic mutations through:
  * the use of high thresholds for mapping and base quality,
- * strict consensus between overlapping read-pairs,
+ * strict consensus in the overlapping regions of read-pairs,
  * gnomAD-based germline variant filtering​,
  * and a ctDNA-centric fragmentomics filter
 
 
 # Run MisMatchFinder
-The easiest way is downloding the binary file of MismatchFinder and running it.  
-The reference files (gnomAD echtvar for the germline variant filter and human GRCh38 high mappability regions for the whitelist bed file) and demo files can be downloaded in [Zenodo repository](https://zenodo.org/records/12754454).  
-We recommend to use MisMatchFinder with the quality filter, the germline filter, and the fragmentomics filter as the following settings:  
+The easiest way to deploy our tool is by downloding the binary file of MismatchFinder and directly running it.  
+The GRCh38 related reference files (gnomAD echtvar for the germline variant filter and human GRCh38 high mappability regions for the whitelist bed file) and demo files can be found in [Zenodo repository](https://zenodo.org/records/12754454).  
+We recommend running MisMatchFinder with the following parameters:  
+
 ```
 ./mismatchfinder --germline_file gnomad.v3.1.2.echtvar.v2.zip --only-overlaps --strict-overlap --whitelist_bed GCA_000001405.15_GRCh38_full_analysis_set.100mer.highMappability.bed -o $OUTPUT_FOLDER $INPUT_BAM
 ```
-Other parameters can be set as default. 
+Other parameters can be kept as defaults. 
 
 # Installation
 Install time is 100% dependent on the compile time and therefore different between systems, but on a standard x86 laptop compile time is typically less than 2 minutes.
@@ -88,9 +89,9 @@ OPTIONS:
 # Example analysis
 
 The demo file can be downloaded from [the Zenodo repository](https://doi.org/10.5281/zenodo.12754454).  
-With the [plasma_DNA_demo.bam](https://doi.org/10.5281/zenodo.12754454) runing the recommended analysis we generate the vcf output [plasma_DNA_demo_bamsites.vcf.gz](https://doi.org/10.5281/zenodo.12754454).  
-Note, the plasma_DNA_demo.bam is simulated human plasma sequencing data of chromosome 19. This file and the corresponding MisMatchFinder output (plasma_DNA_demo_bamsites.vcf.gz) should only be used for the sanity testing of MisMatchFinder.  
-Runtime of this step should be around 1 minute on the test data
+Running MisMatchFinder on the [plasma_DNA_demo.bam](https://doi.org/10.5281/zenodo.12754454) will generate the following vcf output [plasma_DNA_demo_bamsites.vcf.gz](https://doi.org/10.5281/zenodo.12754454).  
+Note, the plasma_DNA_demo.bam is simulated human plasma sequencing data for chromosome 19. This file and the corresponding MisMatchFinder output (plasma_DNA_demo_bamsites.vcf.gz) should only be used for the sanity testing of MisMatchFinder.  
+Runtime of this step should be around 1 minute on the test data.
 ```
 $ ./mismatchfinder --germline_file ./gnomad.v3.1.2.echtvar.v2.zip --only-overlaps --strict-overlap --whitelist_bed ./GRCh38/GCA_000001405.15_GRCh38_full_analysis_set.100mer.highMappability.bed -o ./ ./plasma_DNA_demo.bam
 [...]
@@ -110,7 +111,8 @@ $ ./mismatchfinder --germline_file ./gnomad.v3.1.2.echtvar.v2.zip --only-overlap
 2024-07-25T02:43:59.321Z INFO [mismatchfinder] Found 1623 somatic mismatches
 ```
 
-once we have the vcf (can be found in the [Zenodo](https://doi.org/10.5281/zenodo.12754454) or [example](example/plasma_DNA_demo_bamsites.vcf.gz)), we can perform signature deconvolution in R with user desired tools. For example, we used sigminer(v2.3.0) with COSMIC mutational signature v3.2 for the demostration. 
+Once we have the variants called by MisMatchFinder as a vcf file (test data can be found in the [Zenodo](https://doi.org/10.5281/zenodo.12754454) or [example](example/plasma_DNA_demo_bamsites.vcf.gz)), we can perform mutational signature deconvolution in R with user-selected tools. 
+For example, we used sigminer(v2.3.0) with COSMIC mutational signature v3.2 for the following demostration:
 
 ```R
 library(data.table)
