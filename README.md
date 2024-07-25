@@ -87,6 +87,7 @@ OPTIONS:
 
 # Example analysis
 
+The demo file can be downloaded from [the Zenodo repository](https://doi.org/10.5281/zenodo.12754454).  
 With the [plasma_DNA_demo.bam](https://doi.org/10.5281/zenodo.12754454) runing the recommended analysis we generate the vcf output [plasma_DNA_demo_bamsites.vcf.gz](https://doi.org/10.5281/zenodo.12754454).  
 Note, the plasma_DNA_demo.bam is simulated human plasma sequencing data of chromosome 19. This file and the corresponding MisMatchFinder output (plasma_DNA_demo_bamsites.vcf.gz) should only be used for the sanity testing of MisMatchFinder.  
 Runtime of this step should be around 1 minute on the test data
@@ -118,7 +119,7 @@ library(BSgenome.Hsapiens.UCSC.hg38)
 library(dlfUtils)
 
 ######## mutational signature ########
-vcf_file <- "/dawson_genomics/Projects/MisMatchFinder/Tothill_samples/revision/demo_file/plasma_DNA_sort_rmd_bamsites.vcf.gz"
+vcf_file <- "./plasma_DNA_sort_rmd_bamsites.vcf.gz"
 maf_file <- sigminer::read_vcf(vcf_file, genome_build = "hg38")
 tally <- sigminer::sig_tally(maf_file, mode="SBS", ref_genome="BSgenome.Hsapiens.UCSC.hg38")
 expo_SBS <- sig_fit(t(tally$nmf_matrix), sig_index = "ALL", sig_db = "SBS", return_class = "data.table",type="absolute")
