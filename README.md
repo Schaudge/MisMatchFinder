@@ -119,7 +119,7 @@ library(BSgenome.Hsapiens.UCSC.hg38)
 library(dlfUtils)
 
 ######## mutational signature ########
-vcf_file <- "./plasma_DNA_sort_rmd_bamsites.vcf.gz"
+vcf_file <- "./example/plasma_DNA_sort_rmd_bamsites.vcf.gz"
 maf_file <- sigminer::read_vcf(vcf_file, genome_build = "hg38")
 tally <- sigminer::sig_tally(maf_file, mode="SBS", ref_genome="BSgenome.Hsapiens.UCSC.hg38")
 expo_SBS <- sig_fit(t(tally$nmf_matrix), sig_index = "ALL", sig_db = "SBS", return_class = "data.table",type="absolute")
