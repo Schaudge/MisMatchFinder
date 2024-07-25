@@ -16,7 +16,8 @@ We recommend running MisMatchFinder with the following parameters:
 ```
 Other parameters can be kept as defaults. 
 
-# Build from source code
+# Build from source codes
+If you are able to use the executable binary file of MisMatchFinder, then you don't need to build the tool from source codes.  
 Install time is 100% dependent on the compile time and therefore different between systems, but on a standard x86 laptop compile time is typically less than 2 minutes.
 
 Requirements: Rust
