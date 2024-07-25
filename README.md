@@ -110,7 +110,7 @@ $ ./mismatchfinder --germline_file ./gnomad.v3.1.2.echtvar.v2.zip --only-overlap
 2024-07-25T02:43:59.321Z INFO [mismatchfinder] Found 1623 somatic mismatches
 ```
 
-once we have the vcf (can be found in the [Zenodo](https://doi.org/10.5281/zenodo.12754454)), we can perform signature deconvolution in R with user desired tools. For example, we used sigminer(v2.3.0) with COSMIC mutational signature v3.2 for the demostration. 
+once we have the vcf (can be found in the [Zenodo](https://doi.org/10.5281/zenodo.12754454) or [example](example/plasma_DNA_demo_bamsites.vcf.gz)), we can perform signature deconvolution in R with user desired tools. For example, we used sigminer(v2.3.0) with COSMIC mutational signature v3.2 for the demostration. 
 
 ```R
 library(data.table)
@@ -118,13 +118,13 @@ library(sigminer)
 library(BSgenome.Hsapiens.UCSC.hg38)
 library(dlfUtils)
 
-######## mutational signature ########
+######## mutational signature fitting ########
 vcf_file <- "./example/plasma_DNA_sort_rmd_bamsites.vcf.gz"
 maf_file <- sigminer::read_vcf(vcf_file, genome_build = "hg38")
 tally <- sigminer::sig_tally(maf_file, mode="SBS", ref_genome="BSgenome.Hsapiens.UCSC.hg38")
 expo_SBS <- sig_fit(t(tally$nmf_matrix), sig_index = "ALL", sig_db = "SBS", return_class = "data.table",type="absolute")
 
-######## remove artefacts ########
+######## remove sequencing artefacts signatures ########
 seqartefacts <- c("SBS27","SBS43","SBS45","SBS46","SBS47","SBS48","SBS49","SBS50",
                   "SBS51","SBS52","SBS53","SBS54","SBS55","SBS56","SBS57","SBS58",
                   "SBS59","SBS60")
