@@ -15,7 +15,7 @@ We recommend to use MisMatchFinder with the quality filter, the germline filter,
 ```
 Other parameters can be set as default. 
 
-# Installation
+# Build from source code
 Install time is 100% dependent on the compile time and therefore different between systems, but on a standard x86 laptop compile time is typically less than 2 minutes.
 
 Requirements: Rust
